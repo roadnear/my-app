@@ -5,7 +5,9 @@ import { CATS } from './mock-cats';
 @Injectable()
 
 export class CatService {
-	getCats(): Cat[] {
-		return CATS;
+	getCats(): Promise<Cat[]> {
+		return new Promise(resolve => {
+		    resolve(CATS);
+		});
 	}
 }
