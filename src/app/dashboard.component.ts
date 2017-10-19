@@ -3,10 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { Cat } from './cat';
 import { CatService } from './cat.service';
 
-
 @Component({
 	selector: 'my-dashboard',
 	templateUrl: './dashboard.component.html',
+	styleUrls: [ './dashboard.component.css' ],
 	providers: [CatService]
 })
 

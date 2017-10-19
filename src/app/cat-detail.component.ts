@@ -1,22 +1,35 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Location } from '@angular/common';
+import 'rxjs/add/operator/switchMap';
+
+import { CatService } from './cat.service';
 import { Cat } from './cat';
 
 @Component({
 	selector: 'cat-detail',
-	template: `
-		<div *ngIf="cat">
-	      <div>
-	        <label>Name: </label>
-	        <input [(ngModel)]="cat.name" placeholder="name">
-	       </div>
-	      <div>
-	        <label>Breed: </label>
-	        <input [(ngModel)]="cat.breed" placeholder="breed">
-	      </div>
-	    </div>
-	`
+	templateUrl: './cat-detail.component.html',
+	styleUrls: [ './cat-detail.component.css' ]
 })
 
-export class CatDetailComponent {
-	@Input() cat: Cat;
+export class CatDetailComponent implements OnInit {
+	
+	cat: Cat;
+
+	constructor(
+		private catService: CatService,
+		private route: ActivatedRoute,
+		private location: Location
+	) {}
+
+	ngOnInit(): void {
+		this.route.paramMap
+			.switchMap((params: ParamMap) => this.catService.getCat(+params.get('id')))
+			.subscribe(cat => this.cat = cat);
+	}
+
+	goBack(): void {
+	  this.location.back();
+	}
+
 }

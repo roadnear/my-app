@@ -1,0 +1,15 @@
+<div *ngIf="cat">
+	<h2>{{cat.name}} details</h2>
+	<div>
+		<label>ID: </label> {{cat.id}}
+	</div>
+	<div>
+		<label>Name: </label>
+		<input [(ngModel)]="cat.name" placeholder="name">
+	</div>
+	<div>
+		<label>Breed: </label>
+		<input [(ngModel)]="cat.breed" placeholder="breed">
+	</div>
+	<button (click)="goBack()">Back</button>
+</div>
