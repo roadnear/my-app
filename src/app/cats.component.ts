@@ -33,6 +33,28 @@ export class CatsComponent implements OnInit {
     this.router.navigate(['/detail', this.selectedCat.id]);
   }
 
+  add(name: string): void {
+    name = name.trim();
+
+    if (!name) { return;}
+    this.catService.create(name)
+      .then(cat => {
+        this.cats.push(cat);
+        this.selectedCat = null;
+      })
+  }
+
+  delete(cat: Cat): void {
+    this.catService
+      .delete(cat.id)
+      .then(() => {
+        this.cats = this.cats.filter(c => c !== cat);
+        if (this.selectedCat === cat) {
+          this.selectedCat = null;
+        }
+      })
+  }
+
   ngOnInit(): void {
   	this.getCats();
   }

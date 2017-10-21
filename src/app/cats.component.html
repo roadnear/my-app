@@ -1,7 +1,9 @@
 <ul class="cats">
   <li [class.selected]="cat === selectedCat" *ngFor="let cat of cats" (click)="onSelect(cat)">
     <div>
-      <span class="badge">{{cat.id}}</span> {{cat.name}}
+      <span class="badge">{{cat.id}}</span>
+      <span>{{cat.name}}</span>
+      <button class="delete" (click)="delete(cat); $event.stopPropagation()">x</button>
     </div>
   </li>
 </ul>
@@ -9,5 +11,9 @@
   <h2>
     {{ selectedCat.name | uppercase }} is my cat
   </h2>
+  <div>
+    <label>Cat name:</label> <input #catName />
+    <button (click)="add(catName.value); catName.value=''">Add</button>
+  </div>
   <button (click)="gotoDetail()">View Details</button>
 </div>

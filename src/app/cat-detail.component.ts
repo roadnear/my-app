@@ -32,4 +32,9 @@ export class CatDetailComponent implements OnInit {
 	  this.location.back();
 	}
 
+	save(): void {
+	  this.catService.update(this.cat)
+	  	.then(() => this.goBack());
+	}
+
 }
