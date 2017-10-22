@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CatDetailComponent } from './cat-detail.component';
 import { CatsComponent } from './cats.component';
 import { DashboardComponent } from './dashboard.component';
+import { CatSearchComponent } from './cat-search.component';
 import { CatService } from './cat.service';
 
 @NgModule({
@@ -18,7 +19,8 @@ import { CatService } from './cat.service';
     AppComponent,
     CatDetailComponent,
     CatsComponent,
-    DashboardComponent
+    DashboardComponent,
+    CatSearchComponent
   ],
   imports: [
     BrowserModule,
